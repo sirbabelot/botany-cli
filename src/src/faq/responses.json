@@ -1,0 +1,16 @@
+{
+  "greeting": {
+    "text": "Salutations, friend!"
+  },
+  "thanks": {
+    "text": "It was nothing 8|"
+  },
+  "None": {
+    "attachment":{
+      "type":"image",
+      "payload":{
+        "url":"http://i.giphy.com/14aUO0Mf7dWDXW.gif"
+      }
+    }
+  }
+}

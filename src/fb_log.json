@@ -1,0 +1,40 @@
+{
+	"original": null,
+	"response": {
+		"req": {
+			"method": "POST",
+			"url": "https://graph.facebook.com/v2.6/me/messages",
+			"data": {
+				"recipient": {
+					"id": "1053762841382738"
+				},
+				"message": {
+					"attachment": {
+						"type": "image",
+						"payload": {
+							"url": "http://media2.giphy.com/media/S9WulDcCf2d8Y/200.gif"
+						}
+					}
+				}
+			}
+		},
+		"header": {
+			"www-authenticate": "OAuth \"Facebook Platform\" \"invalid_request\" \"(#100) Failed to fetch the file from the url\"",
+			"access-control-allow-origin": "*",
+			"pragma": "no-cache",
+			"cache-control": "no-store",
+			"facebook-api-version": "v2.6",
+			"expires": "Sat, 01 Jan 2000 00:00:00 GMT",
+			"content-type": "text/javascript; charset=UTF-8",
+			"x-fb-trace-id": "GIifrmFpnJn",
+			"x-fb-rev": "2415389",
+			"x-fb-debug": "6hxcvDQJwkLjxkmJgEvVb/WzI3z4Vgqk9Ng9EI1LtoLv4JYo8hPU0Klwz+f19srdqxtN2sDqwlm1u5Xme6G3zQ==",
+			"date": "Mon, 27 Jun 2016 01:57:21 GMT",
+			"connection": "close",
+			"content-length": "130"
+		},
+		"status": 400,
+		"text": "{\"error\":{\"message\":\"(#100) Failed to fetch the file from the url\",\"type\":\"OAuthException\",\"code\":100,\"fbtrace_id\":\"GIifrmFpnJn\"}}"
+	},
+	"status": 400
+}
