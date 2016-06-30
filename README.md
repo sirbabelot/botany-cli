@@ -5,5 +5,5 @@ make any fb bot with botany.
 botany new botname
 
 The following is required:
-microsoft's LUIS account
+microsoft's LUIS account and
 a facebook page/app
