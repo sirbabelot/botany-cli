@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+"use strict";
 const readline = require('readline');
 const rl = readline.createInterface(process.stdin, process.stdout);
 const gulp = require('gulp');
@@ -22,9 +23,10 @@ program
     if (typeof(name) !== undefined) {
       project_name = name;
     }
-    gulp.src(`${__dirname}/src/**/*`)
-    .pipe(gulp.dest(`./${project_name}`))
 });
+
+gulp.src(`${__dirname}/src/**/*`)
+.pipe(gulp.dest(`./${project_name}`))
 
 
 program.parse(process.argv);
