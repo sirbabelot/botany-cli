@@ -10,29 +10,6 @@ var stream;
 
 var project_name = 'botany_default';
 
-
-program
-  .version('0.0.1')
-  .usage('[options] <file ...>')
-
-program
-  .command('new [name]')
-  .description('makes a new bot')
-  .action(function(name) {
-    // use a default name if no name given
-    if (typeof(name) !== undefined) {
-      project_name = name;
-    }
-});
-
-gulp.src(`${__dirname}/src/**/*`)
-.pipe(gulp.dest(`./${project_name}`))
-
-
-program.parse(process.argv);
-
-
-
 // ask for things to be added to .env
 var questionsArray = [
   { 
@@ -55,35 +32,51 @@ var questionsArray = [
 // keeps track of which question we are on
 var counter = questionsArray.length - 1;
 
-// ask first question
-askQuestion(questionsArray[counter].question);
 
+program
+  .version('0.0.1')
+  .usage('[options] <file ...>')
 
+program
+  .command('new [name]')
+  .description('makes a new bot')
+  .action(function(name) {
+    // overwrite default name
+    if (typeof(name) !== undefined) {
+      project_name = name;
+    }
+    gulp.src(`${__dirname}/src/**/*`)
+    .pipe(gulp.dest(`./${project_name}`))
+    // ask first question
+    askQuestion(questionsArray[counter].question);
 
-rl.on('line', (line) => {
-  if (isFirstQuestion()) {
-    // create .env file
-    stream = fs.createWriteStream(`./${project_name}/.env`, {flags: 'a'});
-  }
+    rl.on('line', (line) => {
+      if (isFirstQuestion()) {
+        // create .env file
+        stream = fs.createWriteStream(`./${project_name}/.env`, {flags: 'a'});
+      }
 
-  let varName = questionsArray[counter].varName;
+      let varName = questionsArray[counter].varName;
 
-  // write to .env file
-  stream.write(`${varName}="${line.trim()}"\n`);
+      // write to .env file
+      stream.write(`${varName}="${line.trim()}"\n`);
 
-  // go to next question
-  counter = counter - 1;
+      // go to next question
+      counter = counter - 1;
 
-  if (counter < 0) {
-    rl.close();
-  }
+      if (counter < 0) {
+        rl.close();
+      }
 
-  askQuestion(questionsArray[counter].question);
+      askQuestion(questionsArray[counter].question);
 
-}).on('close', () => {
-  console.log('Ok thanks! Your bot has been created. Please edit your .env file if you wish to change your answers');
-  process.exit(0);
+    }).on('close', () => {
+      console.log('Ok thanks! Your bot has been created. Please edit your .env file if you wish to change your answers');
+      process.exit(0);
+    });
 });
+
+program.parse(process.argv);
 
 
 function askQuestion(question) {
