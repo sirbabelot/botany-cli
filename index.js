@@ -36,7 +36,8 @@ var counter = questionsArray.length - 1;
 program
   .version('0.0.1')
   .usage('[options] <file ...>')
-
+  
+// create folder with name given by user
 program
   .command('new [name]')
   .description('makes a new bot')
